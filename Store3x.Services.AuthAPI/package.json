@@ -1,0 +1,14 @@
+{
+  "name": "store3x.services.auth-api",
+  "version": "0.0.0",
+  "description": "Store3x.Services.AuthAPI",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "devDependencies": {
+    "eslint": "^8.21.0"
+  },
+  "eslintConfig": {
+  }
+}

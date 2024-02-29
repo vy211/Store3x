@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{7993C584-DCC8-448A-970D-AD22B67D032A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{07ADB0E7-8E99-411B-9A9D-3231BAE393A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{3CD935C4-CBDD-4DC9-8602-B86A7DD101C9}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Store3x.Services.AuthAPI", "Store3x.Services.AuthAPI\Store3x.Services.AuthAPI.njsproj", "{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15DBCB7C-6845-4324-9A95-F5425A5D95CD}
+	EndGlobalSection
+EndGlobal
