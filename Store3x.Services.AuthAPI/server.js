@@ -31,7 +31,7 @@ poolConnect.then(() => {
         try {
             const request = new sql.Request(pool);
 
-            const result = await request.query('SELECT * FROM sam');
+            const result = await request.query('SELECT * FROM store3x_user');
 
             res.json(result.recordset);
         } catch (error) {
@@ -43,10 +43,10 @@ poolConnect.then(() => {
     //insert new user
     app.post("/addUser", async (req, res) => {
         try {
-            const { name } = req.body;
+            const { email, fname, lname, password, user_type } = req.body;
             const request = new sql.Request(pool);
             const result = await request.query(`
-                INSERT INTO sam (name) VALUES ('${name}')
+                INSERT INTO store3x_user (email, fname, lname, password, user_type) VALUES ('${email}','${fname}','${lname}','${password}','${user_type}')
             `);
             res.json({ message: "User Added Successfully", data: result.recordset })
         }
@@ -57,15 +57,15 @@ poolConnect.then(() => {
     });
 
     //Delete
-    app.delete("/remove/:id", async (req, res) => {
+    app.delete("/remove/:email", async (req, res) => {
         try {
-            const { id } = req.params;
+            const { email } = req.params;
             const request = new sql.Request(pool);
 
             const result = await request.query(`
-            DELETE FROM sam WHERE id=${id}
+            DELETE FROM store3x_user WHERE email=${email}
             `);
-            res.json({ message: `User with ID ${id} Deleted !!!`, data: result.recordset });
+            res.json({ message: `User with Email ${email} Deleted !!!`, data: result.recordset });
         } catch (error) {
             console.error("Error deleting data:", error.message);
             res.status(500).send("Internal Server Error");
@@ -73,13 +73,13 @@ poolConnect.then(() => {
     });
 
     //Update
-    app.put("/update/:id", async (req, res) => {
+    app.put("/update/:email", async (req, res) => {
         try {
-            const { id } = req.params;
-            const { name } = req.body;
+            const { email } = req.params;
+            const { fname, lname, password, user_type } = req.body;
             const request = new sql.Request(pool);
             const result = await request.query(`
-                UPDATE sam SET name='${name}' WHERE id= ${id}
+                UPDATE store3x_user  SET fname='${fname}',lname='${lname}',password='${password}',user_type='${user_type}' WHERE email= '${email}'
             `);
             res.json({ message: "User Updated Successfully", data: result.recordset })
         }
@@ -90,18 +90,20 @@ poolConnect.then(() => {
     });
 
     //Get user by ID
-    app.get("/getById/:id", async (req, res) => {
+    app.get("/getByEmail/:email", async (req, res) => {
         try {
-            const { id } = req.params;
+            const { email } = req.params;
             const request = new sql.Request(pool);
+            console.log(email)
             const result = await request.query(`
-                SELECT * FROM sam WHERE id= ${id}
+                SELECT * FROM store3x_user WHERE email= '${email}'
             `);
+           
             if (result.recordset.length > 0) {
                 res.json({ message: "User fetch Successfully", data: result.recordset });
             }
             else {
-                res.status(404).json({ message: `Student with id ${id} not found !!!!` });
+                res.status(404).json({ message: `Student with Email ${email} not found !!!!` });
             }
         }
         catch (error) {

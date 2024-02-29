@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Store3x.Services.AuthAPI",
   "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "author": {
     "name": ""
   },
