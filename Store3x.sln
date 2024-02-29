@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{3C
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Store3x.Services.AuthAPI", "Store3x.Services.AuthAPI\Store3x.Services.AuthAPI.njsproj", "{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "store3x.frontend.web", "Store3x.Frontend.Web\store3x.frontend.web.esproj", "{8B85F970-0EF6-4D3F-A038-7C9045620909}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,12 +23,19 @@ Global
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B85F970-0EF6-4D3F-A038-7C9045620909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B85F970-0EF6-4D3F-A038-7C9045620909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B85F970-0EF6-4D3F-A038-7C9045620909}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8B85F970-0EF6-4D3F-A038-7C9045620909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B85F970-0EF6-4D3F-A038-7C9045620909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B85F970-0EF6-4D3F-A038-7C9045620909}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
+		{8B85F970-0EF6-4D3F-A038-7C9045620909} = {7993C584-DCC8-448A-970D-AD22B67D032A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15DBCB7C-6845-4324-9A95-F5425A5D95CD}
