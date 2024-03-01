@@ -1,6 +1,8 @@
+const cors = require("cors");
 const express = require("express");
 const sql = require("mssql/msnodesqlv8");
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -90,24 +92,25 @@ poolConnect.then(() => {
     });
 
     //Get user by ID
-    app.get("/getByEmail/:email", async (req, res) => {
+    app.post("/getByEmail", async (req, res) => {
         try {
-            const { email } = req.params;
+            const { email, password } = req.body;
+    
+            console.log(email + password);
+    
+            
             const request = new sql.Request(pool);
-            console.log(email)
             const result = await request.query(`
-                SELECT * FROM store3x_user WHERE email= '${email}'
+                SELECT * FROM store3x_user WHERE email= '${email}' AND password='${password}'
             `);
-           
+    
             if (result.recordset.length > 0) {
-                res.json({ message: "User fetch Successfully", data: result.recordset });
+                res.json({ message: "User fetched Successfully", data: result.recordset });
+            } else {
+                res.status(404).json({ message: `User with Email ${email} not found` });
             }
-            else {
-                res.status(404).json({ message: `Student with Email ${email} not found !!!!` });
-            }
-        }
-        catch (error) {
-            console.error("Error fetchin data:", error.message);
+        } catch (error) {
+            console.error("Error fetching data:", error.message);
             res.status(500).send("Internal Server Error");
         }
     })
