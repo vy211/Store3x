@@ -40,6 +40,7 @@ namespace Store3x.Services.OrderAPI.Controllers
         }
 
         // POST: api/Orders
+        //Shippin and tex always less than 100
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder(Order order)
         {
