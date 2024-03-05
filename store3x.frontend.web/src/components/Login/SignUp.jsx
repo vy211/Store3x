@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -70,7 +70,7 @@ export default function SignUp() {
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5"> 
                         Sign up
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -122,7 +122,7 @@ export default function SignUp() {
                                     onChange={handleChange} // Add this line
                                 />
                             </Grid>
-                         
+
                         </Grid>
                         <Button
                             type="submit"
@@ -134,14 +134,14 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link to="/login" variant="body2">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
+
             </Container>
         </ThemeProvider>
     );
