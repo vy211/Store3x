@@ -67,7 +67,7 @@ export default function SignUp() {
                                     id="email"
                                     label="Email Address"
                                     name="email"
-                                    
+
                                 />
                             </Grid>
 
@@ -84,7 +84,7 @@ export default function SignUp() {
 
                     </Box>
                 </Box>
-                
+
             </Container>
         </ThemeProvider>
     );
