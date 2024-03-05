@@ -9,7 +9,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
+<<<<<<< HEAD
+    <ProjectGuid>884ab9aa-b0d7-400a-a19e-83bf8df0d5fc</ProjectGuid>
+=======
     <ProjectGuid>a63a9632-a1f4-4f13-a63b-359d39b927ab</ProjectGuid>
+>>>>>>> Sandeep
     <ProjectHome>.</ProjectHome>
     <StartupFile>server.js</StartupFile>
     <SearchPath>
@@ -28,7 +32,10 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
     <Content Include=".env" />
+>>>>>>> Sandeep
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
