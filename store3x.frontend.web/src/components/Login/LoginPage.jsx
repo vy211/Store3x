@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,6 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useState } from 'react';
+
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -27,12 +29,9 @@ function Copyright(props) {
     );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -46,27 +45,19 @@ export default function SignIn() {
         });
     };
 
-
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        
-        
         console.log(formData);
         try {
-            const response = await axios.post('http://localhost:3000/getByEmail/', formData)
+            const response = await axios.post('http://localhost:3000/getByEmail/', formData);
             alert("Login Successfull!!!");
-            console.log(response.data); 
+            console.log(response.data);
         } catch (error) {
             alert("Login Unsuccessfull!!!");
             console.error('Error during Axios request:', error.message);
-            
         }
     };
-
-
-
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -78,6 +69,9 @@ export default function SignIn() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        // Background color
+                        padding: '20px', // Adjust padding as needed
+                        borderRadius: '10px', // Optional: Add border radius for a rounded look
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -137,7 +131,9 @@ export default function SignIn() {
                         </Grid>
                     </Box>
                 </Box>
-                
+                <Box mt={8}>
+                    <Copyright />
+                </Box>
             </Container>
         </ThemeProvider>
     );
