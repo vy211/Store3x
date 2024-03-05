@@ -30,6 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include=".env" />
+    <Content Include="libman.json" />
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
