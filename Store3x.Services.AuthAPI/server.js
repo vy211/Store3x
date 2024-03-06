@@ -94,21 +94,24 @@ poolConnect.then(() => {
         }
     });
 
-    //Get user by ID
-    app.post("/getByEmail", async (req, res) => {
+    //LOGIN
+    app.post("/login", async (req, res) => {
         try {
             const { email, password } = req.body;
-    
+
             console.log(email + password);
-    
-            
+
             const request = new sql.Request(pool);
             const result = await request.query(`
-                SELECT * FROM store3x_user WHERE email= '${email}' AND password='${password}'
-            `);
-    
+            SELECT * FROM store3x_user WHERE email= '${email}' AND password='${password}'
+        `);
+
             if (result.recordset.length > 0) {
-                res.json({ message: "User fetched Successfully", data: result.recordset });
+                res.json({
+                    message: "User fetched Successfully",
+                    data: result.recordset[0],   
+                    token: ""
+                });
             } else {
                 res.status(404).json({ message: `User with Email ${email} not found` });
             }
