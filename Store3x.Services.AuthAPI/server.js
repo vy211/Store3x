@@ -2,6 +2,8 @@
 const express = require("express");
 const cors = require("cors");
 const sql = require("mssql/msnodesqlv8");
+const axios = require('axios'); 
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -35,7 +37,7 @@ poolConnect.then(() => {
             const request = new sql.Request(pool);
 
             const result = await request.query('SELECT * FROM store3x_user');
-
+ 
             res.json(result.recordset);
         } catch (error) {
             console.error("Error fetching data:", error.message);
@@ -48,13 +50,12 @@ poolConnect.then(() => {
         try {
             const { email, fname, lname, password, user_type } = req.body;
             const request = new sql.Request(pool);
-            await request.input('email', sql.VarChar, email)
-                .input('fname', sql.VarChar, fname)
-                .input('lname', sql.VarChar, lname)
-                .input('password', sql.VarChar, password)
-                .query('INSERT INTO store3x_user (email, fname, lname, password, user_type) VALUES (@email, @fname, @lname, @password, 1)');
-            res.json({ message: "User Added Successfully" });
-        } catch (error) {
+            const result = await request.query(`
+                INSERT INTO store3x_user (email, fname, lname, password, user_type) VALUES ('${email}','${fname}','${lname}','${password}','${user_type}')
+            `);
+            res.json({ message: "User Added Successfully", data: result.recordset })
+        }
+        catch (error) {
             console.error("Error inserting data:", error.message);
             res.status(500).send("Internal Server Error");
         }
