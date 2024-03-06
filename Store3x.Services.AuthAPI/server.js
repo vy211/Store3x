@@ -37,7 +37,7 @@ poolConnect.then(() => {
             const request = new sql.Request(pool);
 
             const result = await request.query('SELECT * FROM store3x_user');
-
+ 
             res.json(result.recordset);
         } catch (error) {
             console.error("Error fetching data:", error.message);
