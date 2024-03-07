@@ -18,156 +18,45 @@ import burger14 from "../../assets/product/product-14.jpg"
 
 
 
+const productData = [
+    { itemNum: 1, burgerSrc: burger1, price: 200, title: "Cheese Burger", delay: 0.1 },
+    { itemNum: 2, burgerSrc: burger2, price: 200, title: "Veg Cheese Burger", delay: 0.5 },
+    // ... (add other product data)
+];
+
+
+
 const Menu = () => {
     const addToCartHandler = (itemNum) => {
-
+        // Implement logic for adding to cart
+        console.log(`Item ${itemNum} added to cart`);
     };
-
+    const buyNowHandler = (itemNum) => {
+        // Implement logic for buying now
+        console.log(`Buying item ${itemNum} now`);
+    };
 
     return (
         <section id="menu">
             <h1>Product</h1>
             <div>
-
-                <MenuCard
-                    itemNum={1}
-                    burgerSrc={burger1}
-                    price={200}
-                    title="Cheese Burger"
-                    delay={0.1}
-                    handler={addToCartHandler}
-                />
-                <MenuCard
-                    itemNum={2}
-                    burgerSrc={burger2}
-                    price={200}
-                    title="Veg Cheese Burger"
-                    delay={0.5}
-                    handler={addToCartHandler}
-                />
-                <MenuCard
-                    itemNum={3}
-                    burgerSrc={burger3}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={4}
-                    burgerSrc={burger4}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={5}
-                    burgerSrc={burger5}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={5}
-                    burgerSrc={burger5}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={6}
-                    burgerSrc={burger6}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={7}
-                    burgerSrc={burger7}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={8}
-                    burgerSrc={burger8}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={9}
-                    burgerSrc={burger9}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={10}
-                    burgerSrc={burger10}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={11}
-                    burgerSrc={burger11}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={12}
-                    burgerSrc={burger12}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={13}
-                    burgerSrc={burger13}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
-                <MenuCard
-                    itemNum={14}
-                    burgerSrc={burger14}
-                    price={450}
-                    title="Cheese Burger with French Fry"
-                    delay={0.8}
-                    handler={addToCartHandler}
-                />
-
+                {productData.map((product) => (
+                    <MenuCard
+                        key={product.itemNum}
+                        addToCartHandler={addToCartHandler}
+                        buyNowHandler={buyNowHandler}
+                        {...product}
+                    />
+                ))}
             </div>
         </section>
-    )
-}
+    );
+};
+
+export default Menu;
 
 
 
 
-export default Menu
+
+

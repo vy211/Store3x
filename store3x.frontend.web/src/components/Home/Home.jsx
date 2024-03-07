@@ -13,11 +13,16 @@ import Latest from '../Header/Latest';
 import Footer from '../Header/Footer';
 
 const Home = () => {
+    const containerStyle = {
+        width: '100%',
+        // Add other styles as needed
+    };
+
     return (
-        <div>
+        <div style={containerStyle}>
            
             <Header />
-                    <Hero />
+            <Hero />
 
 
             <Banner />
