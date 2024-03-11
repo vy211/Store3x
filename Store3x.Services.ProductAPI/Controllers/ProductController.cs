@@ -6,8 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+
+
 namespace Store3x.Services.ProductAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -95,6 +99,7 @@ namespace Store3x.Services.ProductAPI.Controllers
 
             return NoContent();
         }
+        
 
         private bool ProductExists(int id)
         {

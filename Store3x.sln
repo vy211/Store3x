@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store3x.Services.ProductAPI
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{81FD4127-2ADE-4097-86F5-598D0C4C18A0}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "store3x.frontend.client", "Store3x.Frontend.client\store3x.frontend.client.esproj", "{686BDFD7-168E-492D-8A80-FEE45A739AC2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +33,6 @@ Global
 		{AE554944-0288-4CC3-975F-ADF7BBDEA1A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE554944-0288-4CC3-975F-ADF7BBDEA1A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE554944-0288-4CC3-975F-ADF7BBDEA1A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{686BDFD7-168E-492D-8A80-FEE45A739AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{686BDFD7-168E-492D-8A80-FEE45A739AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{686BDFD7-168E-492D-8A80-FEE45A739AC2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{686BDFD7-168E-492D-8A80-FEE45A739AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{686BDFD7-168E-492D-8A80-FEE45A739AC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{686BDFD7-168E-492D-8A80-FEE45A739AC2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,7 +41,6 @@ Global
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
 		{C1298FCB-BE20-4D04-A13C-63FDE94302E5} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
 		{AE554944-0288-4CC3-975F-ADF7BBDEA1A4} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
-		{686BDFD7-168E-492D-8A80-FEE45A739AC2} = {81FD4127-2ADE-4097-86F5-598D0C4C18A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15DBCB7C-6845-4324-9A95-F5425A5D95CD}

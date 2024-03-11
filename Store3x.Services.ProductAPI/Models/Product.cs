@@ -22,6 +22,8 @@ namespace Store3x.Services.ProductAPI.Models
         public int in_stock { get; set; }
         public decimal weight { get; set; }
         public int carrier_id { get; set; }
+        public string image_url { get; set; }
     }
+
 
 }
