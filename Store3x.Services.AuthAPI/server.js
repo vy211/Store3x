@@ -1,7 +1,10 @@
 const express = require("express");
-const cors = require("cors");
+const cors = require("cors"); // Import the cors middleware
 const sql = require("mssql/msnodesqlv8");
 const app = express();
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
 const allUserRoute = require("./routes/AllUsers");
 const addUserRoute = require("./routes/AddUser");
 const removeUserRoute = require("./routes/RemoveUser");
@@ -29,9 +32,14 @@ const poolConnect = pool.connect();
 poolConnect.then(() => {
     console.log("Database connected");
 
-    app.use(cors());
+    app.use(cors({
+        origin: 'http://localhost:3000',
+        credentials: true,
+    }));
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    app.use(cookieParser());
 
     // Set the pool in app.locals for use in routes
     app.locals.pool = pool;
