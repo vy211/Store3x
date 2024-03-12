@@ -99,7 +99,31 @@ namespace Store3x.Services.ProductAPI.Controllers
 
             return NoContent();
         }
-        
+
+        //cart value
+        [HttpGet("/cart/{buyerId}")]
+        public async Task<ActionResult<List<Cart>>> GetCartValue(string buyerId)
+        {
+            var carts = await _context.Carts
+                                      .Where(c => c.buyer_id == buyerId)
+                                      .Select(c => new {
+                                          c.buyer_id,
+                                          c.product_id
+                                      })
+                                      .Distinct()
+                                      .ToListAsync();
+
+            if (!carts.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(carts);
+        }
+
+
+
+
 
         private bool ProductExists(int id)
         {
