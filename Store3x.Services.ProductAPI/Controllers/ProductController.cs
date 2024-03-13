@@ -122,6 +122,38 @@ namespace Store3x.Services.ProductAPI.Controllers
         }
 
 
+        [HttpPost("/cart/AddToCart")] 
+        public async Task<ActionResult<Cart>> AddToCart(Cart cart)
+        {
+            _context.Carts.Add(cart);
+            await _context.SaveChangesAsync();
+
+            // Assuming you have a GetCart method that takes a buyerId to fetch the cart. If not, adjust accordingly.
+            return CreatedAtAction("GetCartValue", new { buyerId = cart.buyer_id }, cart);
+        }
+
+
+        // DELETE: api/Products/cart/DeleteFromCart
+        [HttpDelete("/cart/DeleteFromCart")]
+        public async Task<IActionResult> DeleteFromCart(string buyerId, int productId)
+        {
+            Console.WriteLine($"Deleting cart item for buyerId: {buyerId}, productId: {productId}");
+            // Find the cart item based on buyerId and productId
+            var cartItem = await _context.Carts
+                .FirstOrDefaultAsync(c => c.product_id == productId && c.buyer_id == buyerId);
+
+            if (cartItem == null)
+            {
+                return NotFound();
+            }
+
+            
+
+            _context.Carts.Remove(cartItem);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // 204 No Content is a typical response for a successful DELETE operation
+        }
 
 
 
