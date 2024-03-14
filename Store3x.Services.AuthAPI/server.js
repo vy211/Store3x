@@ -1,16 +1,17 @@
+//server.js
+
 const express = require("express");
-const cors = require("cors"); // Import the cors middleware
+const cors = require("cors"); 
 const sql = require("mssql/msnodesqlv8");
 const app = express();
-const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
 const allUserRoute = require("./routes/AllUsers");
-const addUserRoute = require("./routes/AddUser");
+const signUpRoute = require("./routes/SignUp");
 const removeUserRoute = require("./routes/RemoveUser");
 const updateUserRoute = require("./routes/UpdateUser");
 const loginRoute = require("./routes/Login");
-
+const auth= require("./middleware/Auth")
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
@@ -37,6 +38,11 @@ poolConnect.then(() => {
         credentials: true,
     }));
 
+    app.use((req, res, next) => {
+        console.log("HTTP Method : " + req.method + " , URL : " + req.url);
+        next();
+    })
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());
@@ -45,10 +51,10 @@ poolConnect.then(() => {
     app.locals.pool = pool;
 
     app.use("/allUser", allUserRoute);
-    app.use("/addUser", addUserRoute);
     app.use("/removeUser", removeUserRoute);
     app.use("/updateUser", updateUserRoute);
     app.use("/login", loginRoute);
+    app.use("/signUp", signUpRoute);
 
     const port = process.env.PORT || 4001;
     app.listen(port, () => {

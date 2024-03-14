@@ -34,7 +34,10 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="libman.json" />
-    <Content Include="routes\AddUser.js">
+    <Content Include="middleware\Auth.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\SignUp.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="routes\AllUsers.js">
@@ -54,6 +57,7 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="middleware\" />
     <Folder Include="routes\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
