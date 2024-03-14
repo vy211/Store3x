@@ -19,7 +19,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <NodejsPort>3000</NodejsPort>
+    <NodejsPort>4001</NodejsPort>
     <StartWebBrowser>False</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -30,9 +30,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include=".env" />
+    <Content Include="crypto.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="libman.json" />
+    <Content Include="routes\AddUser.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\AllUsers.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\Login.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\RemoveUser.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\UpdateUser.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="routes\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

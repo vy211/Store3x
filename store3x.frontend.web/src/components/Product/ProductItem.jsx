@@ -11,7 +11,11 @@ const MenuCard = ({ itemNum, burgerSrc, price, title, handler }) => {
             <img src={burgerSrc} alt={itemNum} />
             <h5>₹{price}</h5>
             <p>{title}</p>
+<<<<<<< HEAD
 
+=======
+            <button>add to cart</button>
+>>>>>>> master
             <button onClick={() => handler(itemNum)} >Buy Now</button>
         </main>
 

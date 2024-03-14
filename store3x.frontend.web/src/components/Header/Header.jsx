@@ -26,8 +26,13 @@ const Header = () => {
                     <div className="col-lg-6 col-md-6">
                         <nav className="header__menu mobile-menu">
                             <ul>
+<<<<<<< HEAD
                                 <li className="active"><Link to="/product">Products</Link></li>
                                 <li><a href="./shop.html">Shop</a></li>
+=======
+                                <li className="active"><Link>Home</Link></li>
+                                <li><Link to="/product">Shop</Link></li>
+>>>>>>> master
                                 <li><a href="#">Pages</a>
                                     <ul className="dropdown">
                                         <li><a href="./about.html">About Us</a></li>

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{7993C584-DCC8-448A-970D-AD22B67D032A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{07ADB0E7-8E99-411B-9A9D-3231BAE393A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{3CD935C4-CBDD-4DC9-8602-B86A7DD101C9}"
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Store3x.Services.AuthAPI", "Store3x.Services.AuthAPI\Store3x.Services.AuthAPI.njsproj", "{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "store3x.frontend.web", "Store3x.FrontEnd.Web\store3x.frontend.web.esproj", "{12DB8225-CEC1-4A15-82EE-21C27A30AFEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store3x.Services.OrderAPI", "Store3x.Services.OrderAPI\Store3x.Services.OrderAPI.csproj", "{C1298FCB-BE20-4D04-A13C-63FDE94302E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store3x.Services.ProductAPI", "Store3x.Services.ProductAPI\Store3x.Services.ProductAPI.csproj", "{52B46EBF-CF73-4F26-A873-46170C910DDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,19 +23,22 @@ Global
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12DB8225-CEC1-4A15-82EE-21C27A30AFEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12DB8225-CEC1-4A15-82EE-21C27A30AFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12DB8225-CEC1-4A15-82EE-21C27A30AFEB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{12DB8225-CEC1-4A15-82EE-21C27A30AFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12DB8225-CEC1-4A15-82EE-21C27A30AFEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12DB8225-CEC1-4A15-82EE-21C27A30AFEB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C1298FCB-BE20-4D04-A13C-63FDE94302E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1298FCB-BE20-4D04-A13C-63FDE94302E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1298FCB-BE20-4D04-A13C-63FDE94302E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1298FCB-BE20-4D04-A13C-63FDE94302E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52B46EBF-CF73-4F26-A873-46170C910DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B46EBF-CF73-4F26-A873-46170C910DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B46EBF-CF73-4F26-A873-46170C910DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B46EBF-CF73-4F26-A873-46170C910DDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E64CB3DF-C54C-457C-B7AF-2420220ADD7F} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
-		{12DB8225-CEC1-4A15-82EE-21C27A30AFEB} = {7993C584-DCC8-448A-970D-AD22B67D032A}
+		{C1298FCB-BE20-4D04-A13C-63FDE94302E5} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
+		{52B46EBF-CF73-4F26-A873-46170C910DDC} = {07ADB0E7-8E99-411B-9A9D-3231BAE393A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15DBCB7C-6845-4324-9A95-F5425A5D95CD}

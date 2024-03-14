@@ -12,6 +12,10 @@
     <Folder Include="src\components\Login\" />
     <Folder Include="src\components\Home\" />
     <Folder Include="src\components\Header\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="src\components\Shop\" />
+>>>>>>> master
     <Folder Include="src\components\Product\" />
   </ItemGroup>
 </Project>
