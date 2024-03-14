@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store3x.Services.OrderAPI",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store3x.Services.ProductAPI", "Store3x.Services.ProductAPI\Store3x.Services.ProductAPI.csproj", "{52B46EBF-CF73-4F26-A873-46170C910DDC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{81FD4127-2ADE-4097-86F5-598D0C4C18A0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
