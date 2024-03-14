@@ -30,6 +30,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include=".env" />
+    <Content Include="config\allowedOrigins.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="config\corsOptions.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="crypto.js">
       <SubType>Code</SubType>
     </Content>
@@ -58,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="middleware\" />
+    <Folder Include="config\" />
     <Folder Include="routes\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

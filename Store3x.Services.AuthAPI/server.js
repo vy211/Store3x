@@ -1,7 +1,8 @@
-//server.js
+// server.js
 
 const express = require("express");
-const cors = require("cors"); 
+const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 const sql = require("mssql/msnodesqlv8");
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -11,7 +12,8 @@ const signUpRoute = require("./routes/SignUp");
 const removeUserRoute = require("./routes/RemoveUser");
 const updateUserRoute = require("./routes/UpdateUser");
 const loginRoute = require("./routes/Login");
-const auth= require("./middleware/Auth")
+const auth = require("./middleware/Auth");
+
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
@@ -33,21 +35,17 @@ const poolConnect = pool.connect();
 poolConnect.then(() => {
     console.log("Database connected");
 
-    app.use(cors({
-        origin: 'http://localhost:3000',
-        credentials: true,
-    }));
+    app.use(cors(corsOptions));
 
     app.use((req, res, next) => {
         console.log("HTTP Method : " + req.method + " , URL : " + req.url);
         next();
-    })
+    });
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());
 
-    // Set the pool in app.locals for use in routes
     app.locals.pool = pool;
 
     app.use("/allUser", allUserRoute);
