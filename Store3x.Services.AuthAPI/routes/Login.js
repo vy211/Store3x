@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
                     email: user.email,
                     fname: user.fname,
                     lname: user.lname,
-                    user_type: user.user_type,
+                    user_type: user.user_type
                 };
 
                 const token = jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '1d' });
