@@ -1,5 +1,3 @@
-// server.js
-
 const express = require("express");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
@@ -7,18 +5,20 @@ const sql = require("mssql/msnodesqlv8");
 const app = express();
 const cookieParser = require('cookie-parser');
 
-const allUserRoute = require("./routes/AllUsers");
-const signUpRoute = require("./routes/SignUp");
-const removeUserRoute = require("./routes/RemoveUser");
-const updateUserRoute = require("./routes/UpdateUser");
-const loginRoute = require("./routes/Login");
-const auth = require("./middleware/Auth");
+// Import middleware
 const { logger } = require('./middleware/logger');
+const errorHandler = require('./middleware/ErrorHandler');
 
+// Import routes
+const authRoute = require("./routes/AuthRoute");
+const userRoute = require("./routes/UserRoute");
+
+// Load environment variables if not in production
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
 
+// Database configuration
 const config = {
     server: process.env.SERVER,
     database: process.env.DATABASE,
@@ -30,35 +30,41 @@ const config = {
     },
 };
 
+// Create a connection pool
 const pool = new sql.ConnectionPool(config);
 const poolConnect = pool.connect();
 
 poolConnect.then(() => {
     console.log("Database connected");
 
-    app.use(cors(corsOptions));
+    // Middleware
+    app.use(cors(corsOptions)); // Enable CORS
+    app.use(logger); // Logging middleware
+    app.use(express.json()); // Parse JSON bodies
+    app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+    app.use(cookieParser()); // Parse cookies
 
-   
-
-    app.use(logger);
-    app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
-    app.use(cookieParser());
-
+    // Share database pool across routes
     app.locals.pool = pool;
 
-    app.use("/allUser", allUserRoute);
-    app.use("/removeUser", removeUserRoute);
-    app.use("/updateUser", updateUserRoute);
-    app.use("/login", loginRoute);
-    app.use("/signUp", signUpRoute);
+    // Routes
+    app.use("/", userRoute);
+    app.use("/", authRoute);
+
+    // Catch-all route for handling unknown routes
     app.all('*', (req, res) => {
         res.status(404).send("Sorry, the page you are looking for could not be found.");
     });
+
+    // Error handling middleware
+    app.use(errorHandler);
+
+    // Start the server
     const port = process.env.PORT || 4001;
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
     });
+
 }).catch((err) => {
     console.error("Error connecting to the database:", err.message);
 });
