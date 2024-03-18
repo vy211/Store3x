@@ -30,10 +30,42 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include=".env" />
+    <Content Include="config\allowedOrigins.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="config\corsOptions.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="crypto.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="libman.json" />
+    <Content Include="middleware\Auth.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\SignUp.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\AllUsers.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\Login.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\RemoveUser.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\UpdateUser.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="middleware\" />
+    <Folder Include="config\" />
+    <Folder Include="routes\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
