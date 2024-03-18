@@ -132,12 +132,12 @@ namespace Store3x.Services.ProductAPI.Controllers
             return CreatedAtAction("GetCartValue", new { buyerId = cart.buyer_id }, cart);
         }
 
-
         // DELETE: api/Products/cart/DeleteFromCart
         [HttpDelete("/cart/DeleteFromCart")]
         public async Task<IActionResult> DeleteFromCart(string buyerId, int productId)
         {
             Console.WriteLine($"Deleting cart item for buyerId: {buyerId}, productId: {productId}");
+
             // Find the cart item based on buyerId and productId
             var cartItem = await _context.Carts
                 .FirstOrDefaultAsync(c => c.product_id == productId && c.buyer_id == buyerId);
@@ -147,14 +147,12 @@ namespace Store3x.Services.ProductAPI.Controllers
                 return NotFound();
             }
 
-            
-
+            // Remove the found cart item
             _context.Carts.Remove(cartItem);
             await _context.SaveChangesAsync();
 
             return NoContent(); // 204 No Content is a typical response for a successful DELETE operation
         }
-
 
 
         private bool ProductExists(int id)
