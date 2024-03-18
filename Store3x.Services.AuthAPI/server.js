@@ -13,6 +13,7 @@ const removeUserRoute = require("./routes/RemoveUser");
 const updateUserRoute = require("./routes/UpdateUser");
 const loginRoute = require("./routes/Login");
 const auth = require("./middleware/Auth");
+const { logger } = require('./middleware/logger');
 
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
@@ -37,16 +38,9 @@ poolConnect.then(() => {
 
     app.use(cors(corsOptions));
 
-    app.use((req, res, next) => {
-        console.log("HTTP Method : " + req.method + " , URL : " + req.url);
-        next();
-    });
+   
 
-    app.use((req, res, next) => {
-        console.log("HTTP Method : " + req.method + " , URL : " + req.url);
-        next();
-    });
-
+    app.use(logger);
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());
@@ -58,7 +52,9 @@ poolConnect.then(() => {
     app.use("/updateUser", updateUserRoute);
     app.use("/login", loginRoute);
     app.use("/signUp", signUpRoute);
-
+    app.all('*', (req, res) => {
+        res.status(404).send("Sorry, the page you are looking for could not be found.");
+    });
     const port = process.env.PORT || 4001;
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);

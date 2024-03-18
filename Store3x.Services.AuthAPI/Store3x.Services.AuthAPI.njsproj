@@ -43,6 +43,15 @@
     <Content Include="middleware\Auth.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="middleware\logger.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="middleware\LoginLimiter.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\Auth.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\SignUp.js">
       <SubType>Code</SubType>
     </Content>
