@@ -48,8 +48,8 @@ poolConnect.then(() => {
     app.locals.pool = pool;
 
     // Routes
-    app.use("/", userRoute);
     app.use("/", authRoute);
+    app.use("/", userRoute);
 
     // Catch-all route for handling unknown routes
     app.all('*', (req, res) => {

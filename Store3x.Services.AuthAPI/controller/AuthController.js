@@ -1,4 +1,4 @@
-const express = require("express");
+
 const jwt = require('jsonwebtoken');
 const sql = require("mssql/msnodesqlv8");
 const bcrypt = require("bcrypt");
@@ -39,18 +39,14 @@ const login = async (req, res) => {
         const accessToken = jwt.sign(
             tokenData,
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '1s' }
+            { expiresIn: '15m' }
         )
 
-        const refreshToken = jwt.sign(
-            { "username": user.username },
-            process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: '7d' }
-        )
+        
 
 
-        res.cookie('jwt', refreshToken, {
-            httpOnly: true, //accessible only by web server 
+        res.cookie('jwt', accessToken, {
+            //httpOnly: true, //accessible only by web server 
             secure: true, //https
             sameSite: 'None', //cross-site cookie 
             maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match 
@@ -97,7 +93,7 @@ const refresh = async (req, res) => {
                 { expiresIn: '15m' }
             )
 
-            res.json({user, accessToken })
+            res.json({ user, accessToken })
         })
     )
 }
