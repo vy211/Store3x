@@ -157,6 +157,27 @@ namespace Store3x.Services.ProductAPI.Controllers
 
 
 
+
+
+
+        //Seller
+
+        [HttpGet("/seller/{seller_id}")]
+        public async Task<ActionResult<Seller>> GetSeller(string seller_id)
+        {
+            var seller = await _context.Sellers.FindAsync(seller_id);
+
+            if (seller == null)
+            {
+                return NotFound();
+            }
+
+            return seller;
+        }
+
+
+
+
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.product_id == id);
