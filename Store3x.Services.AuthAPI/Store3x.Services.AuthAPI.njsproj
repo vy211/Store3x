@@ -36,26 +36,37 @@
     <Content Include="config\corsOptions.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="controller\AuthController.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="controller\UserController.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="crypto.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="libman.json" />
+    <Content Include="logs\errLog.log" />
+    <Content Include="logs\reqLog.log" />
     <Content Include="middleware\Auth.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="routes\SignUp.js">
+    <Content Include="middleware\ErrorHandler.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="routes\AllUsers.js">
+    <Content Include="middleware\logger.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="routes\Login.js">
+    <Content Include="middleware\LoginLimiter.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="routes\RemoveUser.js">
+    <Content Include="middleware\VerifyJWT.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="routes\UpdateUser.js">
+    <Content Include="routes\AuthRoute.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\UserRoute.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="server.js" />
@@ -63,8 +74,10 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="logs\" />
     <Folder Include="middleware\" />
     <Folder Include="config\" />
+    <Folder Include="controller\" />
     <Folder Include="routes\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
