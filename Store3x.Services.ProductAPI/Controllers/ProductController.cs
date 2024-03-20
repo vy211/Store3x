@@ -173,7 +173,22 @@ namespace Store3x.Services.ProductAPI.Controllers
 
             return seller;
         }
+        //show all product of seller
 
+        [HttpGet("/seller/products/{sellerId}")]
+        public async Task<ActionResult<List<Product>>> GetSellerProducts(string sellerId)
+        {
+            var products = await _context.Products
+                                          .Where(p => p.seller_id == sellerId)
+                                          .ToListAsync();
+
+            if (!products.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(products);
+        }
 
 
 
