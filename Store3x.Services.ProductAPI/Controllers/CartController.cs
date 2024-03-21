@@ -2,14 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Store3x.Services.ProductAPI.Data;
 using Store3x.Services.ProductAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Store3x.Services.ProductAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CartController : ControllerBase
     {
@@ -20,12 +16,17 @@ namespace Store3x.Services.ProductAPI.Controllers
             _context = context;
         }
 
-        // GET: api/cart/{buyerId}
-        [HttpGet("{buyerId}")]
+        //cart value
+        [HttpGet("/cart/{buyerId}")]
         public async Task<ActionResult<List<Cart>>> GetCartValue(string buyerId)
         {
             var carts = await _context.Carts
                                       .Where(c => c.buyer_id == buyerId)
+                                      .Select(c => new {
+                                          c.buyer_id,
+                                          c.product_id
+                                      })
+                                      .Distinct()
                                       .ToListAsync();
 
             if (!carts.Any())
@@ -36,6 +37,8 @@ namespace Store3x.Services.ProductAPI.Controllers
             return Ok(carts);
         }
 
+
+
         // POST: api/cart/AddToCart
         [HttpPost("AddToCart")]
         public async Task<ActionResult<Cart>> AddToCart(Cart cart)
@@ -45,6 +48,8 @@ namespace Store3x.Services.ProductAPI.Controllers
 
             return CreatedAtAction(nameof(GetCartValue), new { buyerId = cart.buyer_id }, cart);
         }
+
+
 
         // DELETE: api/cart/DeleteFromCart
         [HttpDelete("DeleteFromCart")]
@@ -60,10 +65,12 @@ namespace Store3x.Services.ProductAPI.Controllers
                 return NotFound();
             }
 
-            _context.Carts.Remove(cartItem);
+            _context.Carts.Remove(cartItem); // Remove only the first matching cart item
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
+
+
     }
 }
