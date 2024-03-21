@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Store3x.Services.ProductAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SellerController : ControllerBase
     {
