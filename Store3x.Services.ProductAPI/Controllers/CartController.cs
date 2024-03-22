@@ -55,25 +55,34 @@ namespace Store3x.Services.ProductAPI.Controllers
 
 
 
-        // DELETE: api/cart/DeleteFromCart
         [HttpDelete("DeleteFromCart")]
         public async Task<IActionResult> DeleteFromCart(string buyerId, int productId)
         {
-            Console.WriteLine($"Deleting cart item for buyerId: {buyerId}, productId: {productId}");
-
-            var cartItem = await _context.Carts
-                .FirstOrDefaultAsync(c => c.product_id == productId && c.buyer_id == buyerId);
-
-            if (cartItem == null)
+            try
             {
-                return NotFound();
+                Console.WriteLine($"Deleting cart item for buyerId: {buyerId}, productId: {productId}");
+
+                string sqlQuery = "DELETE FROM [product_shoppingcart] WHERE [buyer_id] = '{0}' AND [product_id] = {1}";
+                string formattedSqlQuery = string.Format(sqlQuery, buyerId, productId);
+
+                int rowsAffected = await _context.Database.ExecuteSqlRawAsync(formattedSqlQuery);
+
+                if (rowsAffected == 0)
+                {
+                    return NotFound();
+                }
+
+                return NoContent();
             }
-
-            _context.Carts.Remove(cartItem); // Remove only the first matching cart item
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return StatusCode(500); // Internal Server Error
+            }
         }
+
+
+
 
 
     }
