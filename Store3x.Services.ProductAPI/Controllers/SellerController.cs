@@ -49,6 +49,16 @@ namespace Store3x.Services.ProductAPI.Controllers
             return Ok(products);
         }
 
+        // POST: api/Products
+        [HttpPost("addSeller")]
+
+        public async Task<ActionResult<Seller>> CreateProduct(Seller seller)
+        {
+            _context.Sellers.Add(seller);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetSeller), new { seller_id = seller.seller_id }, seller);
+        }
 
     }
 }
