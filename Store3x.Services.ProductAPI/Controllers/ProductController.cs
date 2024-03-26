@@ -6,13 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-
-
 namespace Store3x.Services.ProductAPI.Controllers
 {
-
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -99,63 +95,6 @@ namespace Store3x.Services.ProductAPI.Controllers
 
             return NoContent();
         }
-
-        //cart value
-        [HttpGet("/cart/{buyerId}")]
-        public async Task<ActionResult<List<Cart>>> GetCartValue(string buyerId)
-        {
-            var carts = await _context.Carts
-                                      .Where(c => c.buyer_id == buyerId)
-                                      .Select(c => new {
-                                          c.buyer_id,
-                                          c.product_id
-                                      })
-                                      .Distinct()
-                                      .ToListAsync();
-
-            if (!carts.Any())
-            {
-                return NotFound();
-            }
-
-            return Ok(carts);
-        }
-
-
-        [HttpPost("/cart/AddToCart")] 
-        public async Task<ActionResult<Cart>> AddToCart(Cart cart)
-        {
-            _context.Carts.Add(cart);
-            await _context.SaveChangesAsync();
-
-            // Assuming you have a GetCart method that takes a buyerId to fetch the cart. If not, adjust accordingly.
-            return CreatedAtAction("GetCartValue", new { buyerId = cart.buyer_id }, cart);
-        }
-
-
-        // DELETE: api/Products/cart/DeleteFromCart
-        [HttpDelete("/cart/DeleteFromCart")]
-        public async Task<IActionResult> DeleteFromCart(string buyerId, int productId)
-        {
-            Console.WriteLine($"Deleting cart item for buyerId: {buyerId}, productId: {productId}");
-            // Find the cart item based on buyerId and productId
-            var cartItem = await _context.Carts
-                .FirstOrDefaultAsync(c => c.product_id == productId && c.buyer_id == buyerId);
-
-            if (cartItem == null)
-            {
-                return NotFound();
-            }
-
-            
-
-            _context.Carts.Remove(cartItem);
-            await _context.SaveChangesAsync();
-
-            return NoContent(); // 204 No Content is a typical response for a successful DELETE operation
-        }
-
-
 
         private bool ProductExists(int id)
         {
