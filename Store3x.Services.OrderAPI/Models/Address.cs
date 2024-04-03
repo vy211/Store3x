@@ -18,5 +18,7 @@ namespace Store3x.Services.OrderAPI.Models
         public int zipcode { get; set; }
         public string phone { get; set; }
         public int is_default { get; set; }
+        public string fname { get; set; }
+        public string lname { get; set; }
     }
 }
