@@ -47,11 +47,27 @@ namespace Store3x.Services.ProductAPI.Controllers
         [HttpPost("AddToCart")]
         public async Task<ActionResult<Cart>> AddToCart(Cart cart)
         {
-            _context.Carts.Add(cart);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var existingCartItem = await _context.Carts.FirstOrDefaultAsync(c => c.product_id == cart.product_id && c.buyer_id == cart.buyer_id);
 
-            return CreatedAtAction(nameof(GetCartValue), new { buyerId = cart.buyer_id }, cart);
+                if (existingCartItem != null)
+                {
+                    // Item already exists in the cart
+                    return Conflict("Item already exists in the cart.");
+                }
+
+                _context.Carts.Add(cart);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetCartValue), new { buyerId = cart.buyer_id }, cart);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
+
 
 
 
