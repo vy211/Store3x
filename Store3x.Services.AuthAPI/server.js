@@ -6,6 +6,7 @@ const corsOptions = require("./config/corsOptions");
 const sql = require("mssql/msnodesqlv8");
 const app = express();
 const cookieParser = require('cookie-parser');
+const paymentRouter = require("./routes/paymentRoute.js");
 
 // Import middleware
 const { logger } = require('./middleware/logger');
@@ -52,6 +53,7 @@ poolConnect.then(() => {
     // Routes
     app.use("/", authRoute);
     app.use("/", userRoute);
+    app.use("/payment", paymentRouter);
 
     // Catch-all route for handling unknown routes
     app.all('*', (req, res) => {
