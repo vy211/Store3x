@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Store3x.Services.ProductAPI.Data;
 using Store3x.Services.ProductAPI.Models;
+using System.Threading.Tasks;
 
 namespace Store3x.Services.ProductAPI.Controllers
 {
@@ -16,11 +18,25 @@ namespace Store3x.Services.ProductAPI.Controllers
             _context = context;
         }
 
-        //cart value
-        [HttpGet("/category")]
-        public async Task<ActionResult<List<Category>>> GetCategoryValue()
+        // Get all categories
+        [HttpGet]
+        public async Task<ActionResult<List<Category>>> GetCategories()
         {
-            return _context.Categories.ToList();
+            return await _context.Categories.ToListAsync();
+        }
+
+        // Get category by ID
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Category>> GetCategoryById(int id)
+        {
+            var category = await _context.Categories.FindAsync(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return category;
         }
     }
 }

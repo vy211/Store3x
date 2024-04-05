@@ -39,6 +39,9 @@
     <Content Include="controller\AuthController.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="controller\paymentController.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="controller\UserController.js">
       <SubType>Code</SubType>
     </Content>
@@ -64,6 +67,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="routes\AuthRoute.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\paymentRoute.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="routes\UserRoute.js">
