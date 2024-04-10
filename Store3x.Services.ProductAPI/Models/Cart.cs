@@ -10,6 +10,7 @@ namespace Store3x.Services.ProductAPI.Models
         public string buyer_id { get; set; }
         [Required]
         public int product_id { get; set; }
+        public int quantity { get; set; }
      
        
     }

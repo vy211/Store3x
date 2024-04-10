@@ -39,11 +39,11 @@ exports.verifyPayment = async (req, res, next) => {
         //database update
 
 
-        res.redirect('http://localhost:3000');
+        res.redirect('http://localhost:3000/success');
     }
     else {
         res.status(400).json({ status: false });
-        res.redirect('http://localhost:3000/dashboard');
+        res.redirect('http://localhost:3000/address');
     }
 
 };

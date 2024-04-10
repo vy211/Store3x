@@ -28,7 +28,8 @@ namespace Store3x.Services.ProductAPI.Controllers
                                       .Where(c => c.buyer_id == buyerId)
                                       .Select(c => new {
                                           c.buyer_id,
-                                          c.product_id
+                                          c.product_id,
+                                          c.quantity
                                       })
                                       .Distinct()
                                       .ToListAsync();
