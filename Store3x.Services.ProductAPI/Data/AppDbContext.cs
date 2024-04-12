@@ -14,6 +14,7 @@ namespace Store3x.Services.ProductAPI.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Seller> Sellers { get; set;}
         public DbSet<Category> Categories { get; set;}
+        public DbSet<Wishlist> Wishlists { get; set; } 
        
     }
 
