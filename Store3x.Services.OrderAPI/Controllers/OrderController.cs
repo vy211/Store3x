@@ -39,6 +39,21 @@ namespace Store3x.Services.OrderAPI.Controllers
             return order;
         }
 
+
+        [HttpGet("/buyer/{id}")]
+        public async Task<ActionResult<List<Order>>> GetOrdersByBuyer(string id)
+        {
+            var orders = await _context.Orders.Where(o => o.buyer_id == id).ToListAsync();
+
+            if (orders == null || !orders.Any())
+            {
+                return NotFound();
+            }
+
+            return orders;
+        }
+
+
         // POST: api/Orders
         //Shippin and tex always less than 100
         [HttpPost]

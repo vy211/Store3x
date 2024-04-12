@@ -1,17 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Store3x.Services.ProductAPI.Models
+namespace Store3x.Services.OrderAPI.Models
 {
-    [Table("product_shoppingcart")]
-    public class Cart
+    [Table("order_product")]
+    public class Buy
     {
         [Key]
-        public string buyer_id { get; set; }
+        public int order_id { get; set; }
         [Required]
         public int product_id { get; set; }
         public int quantity { get; set; }
-     
-       
     }
 }

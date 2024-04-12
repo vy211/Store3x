@@ -1,67 +1,68 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Store3x.Services.ProductAPI.Data;
-using Store3x.Services.ProductAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Store3x.Services.OrderAPI.Data;
+using Store3x.Services.OrderAPI.Models;
 
-namespace Store3x.Services.ProductAPI.Controllers
+namespace Store3x.Services.OrderAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CartController : ControllerBase
+    public class BuyController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public CartController(AppDbContext context)
+        public BuyController(AppDbContext context)
         {
             _context = context;
         }
 
         //cart value
-        [HttpGet("/cart/{buyerId}")]
-        public async Task<ActionResult<List<Cart>>> GetCartValue(string buyerId)
+        [HttpGet("{orderId}")]
+        public async Task<ActionResult<List<Buy>>> GetBuyValue(int orderId)
         {
-            var carts = await _context.Carts
-                                      .Where(c => c.buyer_id == buyerId)
+            var buys = await _context.Buys
+                                      .Where(c => c.order_id == orderId)
                                       .Select(c => new {
-                                          c.buyer_id,
+                                          c.order_id,
                                           c.product_id,
                                           c.quantity
                                       })
                                       .Distinct()
                                       .ToListAsync();
 
-            if (!carts.Any())
+            if (!buys.Any())
             {
                 return NotFound();
             }
 
-            return Ok(carts);
+            return Ok(buys);
         }
 
 
 
         // POST: api/cart/AddToCart
-        [HttpPost("AddToCart")]
-        public async Task<ActionResult<Cart>> AddToCart(Cart cart)
+        [HttpPost("AddtoBuy")]
+        public async Task<ActionResult<Buy>> AddToCart(Buy buy)
         {
             try
             {
-                var existingCartItem = await _context.Carts.FirstOrDefaultAsync(c => c.product_id == cart.product_id && c.buyer_id == cart.buyer_id);
+                var existingBuyItem = await _context.Buys.FirstOrDefaultAsync(c => c.product_id == buy.product_id && c.order_id == buy.order_id);
 
-                if (existingCartItem != null)
+                if (existingBuyItem != null)
                 {
                     // Item already exists in the cart
                     return Conflict("Item already exists in the cart.");
                 }
 
-                _context.Carts.Add(cart);
+                _context.Buys.Add(buy);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetCartValue), new { buyerId = cart.buyer_id }, cart);
+                return CreatedAtAction(nameof(GetBuyValue), new { buyerId = buy.order_id }, buy);
+            }
+            catch (DbUpdateException ex)
+            {
+               return StatusCode(500, $"Internal server error: {ex.Message}");
             }
             catch (Exception ex)
             {
@@ -72,15 +73,15 @@ namespace Store3x.Services.ProductAPI.Controllers
 
 
 
-        [HttpDelete("DeleteFromCart")]
-        public async Task<IActionResult> DeleteFromCart(string buyerId, int productId)
+        [HttpDelete("DeleteFromBuy")]
+        public async Task<IActionResult> DeleteFromCart(int orderId, int productId)
         {
             try
             {
-                Console.WriteLine($"Deleting cart item for buyerId: {buyerId}, productId: {productId}");
+                Console.WriteLine($"Deleting buy item for orderId: {orderId}, productId: {productId}");
 
-                string sqlQuery = "DELETE FROM [product_shoppingcart] WHERE [buyer_id] = '{0}' AND [product_id] = {1}";
-                string formattedSqlQuery = string.Format(sqlQuery, buyerId, productId);
+                string sqlQuery = "DELETE FROM [order_product] WHERE [order_id] = '{0}' AND [product_id] = {1}";
+                string formattedSqlQuery = string.Format(sqlQuery, orderId, productId);
 
                 int rowsAffected = await _context.Database.ExecuteSqlRawAsync(formattedSqlQuery);
 
@@ -98,9 +99,6 @@ namespace Store3x.Services.ProductAPI.Controllers
             }
         }
 
-
-
-
-
     }
 }
+

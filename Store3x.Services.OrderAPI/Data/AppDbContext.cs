@@ -9,6 +9,7 @@ namespace Store3x.Services.OrderAPI.Data
         }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Buy> Buys { get; set; }
         
     }
     

@@ -19,6 +19,7 @@ namespace Store3x.Services.OrderAPI.Models
         public DateTime delivery_date { get; set; }
         public char order_status { get; set; }
         public int quantity { get; set; }
+        public string payment_id { get; set; }
 
     }
 }
