@@ -35,11 +35,27 @@ const createNewUser = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const addUserQuery = `
-            INSERT INTO store3x_user (email, fname, lname, password, user_type)
-            VALUES (@email, @fname, @lname, @password, @user_type);
-            SELECT * FROM store3x_user WHERE email = @email;
-        `;
+        let addUserQuery;
+        if (user_type === 1) {
+            addUserQuery = `
+                INSERT INTO store3x_user (email, fname, lname, password, user_type)
+                VALUES (@email, @fname, @lname, @password, @user_type);
+                INSERT INTO buyer (buyer_id, is_prime)
+                VALUES (@email, 1);
+                SELECT * FROM store3x_user WHERE email = @email;
+            `;
+        } else {
+            addUserQuery = `
+                INSERT INTO store3x_user (email, fname, lname, password, user_type)
+                VALUES (@email, @fname, @lname, @password, @user_type);
+                INSERT INTO seller (seller_id, company_name, url, description, average_rating, rating_count)
+                VALUES (@email, 'ABC', 'example.com', 'sample description', 0, 0);
+                INSERT INTO buyer (buyer_id, is_prime)
+                VALUES (@email, 1);
+                SELECT * FROM store3x_user WHERE email = @email;
+            `;
+        }
+
         const addUserResult = await pool.request()
             .input('email', email)
             .input('fname', fname)
